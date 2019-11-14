@@ -653,7 +653,7 @@ func (b *BinlogSyncer) onStream(s *BinlogStreamer) {
 		}
 
 		if err != nil {
-			log.Error(err)
+			log.Info(err)
 			// we meet connection error, should re-connect again with
 			// last nextPos or nextGTID we got.
 			if len(b.nextPos.Name) == 0 && b.prevGset == nil {

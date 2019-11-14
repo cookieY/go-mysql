@@ -74,7 +74,7 @@ func (s *BinlogStreamer) closeWithError(err error) {
 	if err == nil {
 		err = ErrSyncClosed
 	} else {
-		log.Errorf("close sync with err: %v", err)
+		log.Info("close sync with err: %v", err)
 	}
 
 	select {
