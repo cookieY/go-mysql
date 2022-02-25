@@ -10,11 +10,11 @@ import (
 	"sync"
 	"time"
 
+	"github.com/cookieY/go-mysql/client"
+	. "github.com/cookieY/go-mysql/mysql"
 	"github.com/pingcap/errors"
 	uuid "github.com/satori/go.uuid"
 	"github.com/siddontang/go-log/log"
-	"github.com/cookieY/go-mysql/client"
-	. "github.com/cookieY/go-mysql/mysql"
 )
 
 var (
@@ -362,11 +362,11 @@ func (b *BinlogSyncer) StartSync(pos Position) (*BinlogStreamer, error) {
 	defer b.m.Unlock()
 
 	if b.running {
-		return nil, errors.Trace(errSyncRunning)
+		return nil, errSyncRunning
 	}
 
 	if err := b.prepareSyncPos(pos); err != nil {
-		return nil, errors.Trace(err)
+		return nil, err
 	}
 
 	return b.startDumpStream(), nil
